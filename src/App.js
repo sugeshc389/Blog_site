@@ -9,20 +9,23 @@ import { blogContext } from './Components/Contex';
 
 
 function App() {
-  const [blog, setBlog] = useState('');
-  const [title, setTitle] = useState('');
-  const states = {blog,setBlog,title,setTitle}
+  const [blog, setBlog] = useState([]);
+  const [title, setTitle] = useState([]);
+  const states = { blog, setBlog, title, setTitle }
   return (
-    <BrowserRouter>
-      <blogContext.Provider value={states}>
-        <Routes>
-          <Route path='/' Component={BlogSubmit} />
-          <Route path='/page' Component={Page} />
-          <Route path='/title' Component={Title} />
-        </Routes>
-      </blogContext.Provider>
-    </BrowserRouter>
+    <div className='main'>
 
+      <BrowserRouter>
+        <blogContext.Provider value={states}>
+          <Routes>
+            <Route path='/' Component={BlogSubmit} />
+            <Route path='/page' Component={Page} /> 
+            <Route path='/title' Component={Title} />
+          </Routes>
+        </blogContext.Provider>
+      </BrowserRouter>
+
+    </div>
 
   );
 }

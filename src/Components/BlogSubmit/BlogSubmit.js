@@ -1,8 +1,61 @@
-import React from 'react'
+import React, { useContext, useRef } from 'react'
+import './BlogSubmit.css';
+import { blogContext } from '../Contex';
+import { useNavigate } from 'react-router-dom';
 
 function BlogSubmit() {
+  const inputRef = useRef(null)
+  const blogData = useContext(blogContext);
+  const { blog, setBlog, title, setTitle } = blogData;
+  const navigate = useNavigate();
+  const blogSubmit = (e) => {
+    console.log(blogData.title);
+    console.log(blogData.blog);
+    e.preventDefault();
+  }
+  const clickHandler = () => {
+    const Title = inputRef.current.title.value
+    const Blog = inputRef.current.blog.value
+    setTitle([...title, { Title }])
+    setBlog([...blog, { Blog }])
+    navigate('/title')
+  }
+
+
+
+
   return (
-    <div>BlogSubmit</div>
+    <div>
+      <div className='maindiv'>
+        <form ref={inputRef} className='form' onSubmit={blogSubmit} >
+          <div className='sm'>
+            <label htmlFor="Title"></label><br />
+            <input
+              type="text"
+              id="title"
+              required
+              placeholder='Title'
+              name="title"
+
+
+            />
+          </div>
+          <div className='sm'>
+            <label htmlFor="blog"></label><br />
+            <input
+              type="text"
+              id="blog"
+              required
+              placeholder='Blog'
+              name='blog'
+
+
+            />
+          </div><br /><br /><br />
+          <button onClick={clickHandler} className='btn' type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
   )
 }
 
