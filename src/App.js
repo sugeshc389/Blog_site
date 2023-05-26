@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+
 import './App.css';
+import BlogSubmit from './Components/BlogSubmit/BlogSubmit';
+import { useState } from 'react';
+import Page from './Components/Page/Page';
+import Title from './Components/Title/Title';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { blogContext } from './Components/Contex';
+
 
 function App() {
+  const [blog, setBlog] = useState('');
+  const [title, setTitle] = useState('');
+  const states = {blog,setBlog,title,setTitle}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <blogContext.Provider value={states}>
+        <Routes>
+          <Route path='/' Component={BlogSubmit} />
+          <Route path='/page' Component={Page} />
+          <Route path='/title' Component={Title} />
+        </Routes>
+      </blogContext.Provider>
+    </BrowserRouter>
+
+
   );
 }
 
