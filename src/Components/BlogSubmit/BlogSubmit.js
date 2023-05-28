@@ -6,8 +6,10 @@ import { useNavigate } from 'react-router-dom';
 function BlogSubmit() {
   const inputRef = useRef(null)
   const blogData = useContext(blogContext);
-  const { blog, setBlog, title, setTitle } = blogData;
+  const { title, setTitle } = blogData;
   const navigate = useNavigate();
+
+  
   const blogSubmit = (e) => {
     console.log(blogData.title);
     console.log(blogData.blog);
@@ -16,13 +18,13 @@ function BlogSubmit() {
   const clickHandler = () => {
     const Title = inputRef.current.title.value
     const Blog = inputRef.current.blog.value
-    setTitle([...title, { Title }])
-    setBlog([...blog, { Blog }])
+    const id = Math.floor(Math.random() * 1000);
+
+    console.log(title);
+    setTitle([...title, { Title, Blog, id }])
+
     navigate('/title')
   }
-
-
-
 
   return (
     <div>

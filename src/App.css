@@ -1,5 +1,10 @@
-.main{
+.main {
   background-color: #055565;
   height: 100vh;
 }
 
+body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}

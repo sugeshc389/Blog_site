@@ -1,21 +1,25 @@
 import React, { useContext } from 'react'
 import { blogContext } from '../Contex'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import './Title.css'
 
 function Title() {
+  const navigate = useNavigate();
   const blog = useContext(blogContext);
   const { title } = blog
   console.log(title);
-
-  console.log('hioi');
   return (
-    <div>
+    <div className='title' >
 
-      {title.map((item) =>
+      {title.map((item, index) =>
 
-        <h1><Link to={'/page'}>{item.Title}</Link></h1>
+        <h1 ><Link className='link' to={`/page/${item.id}`}>{index + 1}:{item.Title}</Link></h1>
+
+
 
       )}
+      <button onClick={() => navigate('/')}>Add Blog</button>
+
 
     </div>
   )

@@ -1,4 +1,4 @@
-
+import React from 'react';
 import './App.css';
 import BlogSubmit from './Components/BlogSubmit/BlogSubmit';
 import { useState } from 'react';
@@ -9,9 +9,10 @@ import { blogContext } from './Components/Contex';
 
 
 function App() {
-  const [blog, setBlog] = useState([]);
+
   const [title, setTitle] = useState([]);
-  const states = { blog, setBlog, title, setTitle }
+
+  const states = { title, setTitle }
   return (
     <div className='main'>
 
@@ -19,7 +20,7 @@ function App() {
         <blogContext.Provider value={states}>
           <Routes>
             <Route path='/' Component={BlogSubmit} />
-            <Route path='/page' Component={Page} /> 
+            <Route path='/page/:id' Component={Page} />
             <Route path='/title' Component={Title} />
           </Routes>
         </blogContext.Provider>
